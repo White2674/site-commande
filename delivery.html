@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Livraison</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header><img src="logo.png" alt="Logo" class="logo" /></header>
   <div class="container">
-    <div class="card">
-      <h1 class="title">Informations de Livraison</h1>
-      <form class="form" onsubmit="saveDelivery(event)">
-        <input type="text" id="nom" placeholder="Nom complet" required>
-        <input type="text" id="adresse" placeholder="Adresse" required>
-        <textarea id="infos" placeholder="Informations complémentaires"></textarea>
-        <button type="submit" class="btn">Continuer</button>
-      </form>
-    </div>
+    <h1>Informations de Livraison</h1>
+    <form id="deliveryForm">
+      <input type="text" id="contactName" placeholder="Nom du contact" required />
+      <input type="text" id="phoneNumber" placeholder="Numéro à contacter" required />
+      <input type="datetime-local" id="deliveryDate" required />
+      <textarea id="comments" placeholder="Commentaire... (facultatif)"></textarea>
+      <button type="submit">Continuer</button>
+    </form>
   </div>
   <script src="script.js"></script>
 </body>
