@@ -2,17 +2,18 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Résumé</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo" class="logo" />
-  </header>
   <main class="container">
-    <h1>Résumé de la commande</h1>
-    <div id="recap" class="summary"></div>
-    <button class="btn-primary send-btn" onclick="envoyerCommande()">Envoyer la commande</button>
+    <div class="card">
+      <h1 class="title">Résumé de la commande</h1>
+      <div id="recap"></div>
+      <div id="totaux"></div>
+      <button class="btn" onclick="envoyerCommande()">Envoyer la commande</button>
+    </div>
   </main>
   <script src="script.js"></script>
 </body>
