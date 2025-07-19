@@ -10,12 +10,15 @@
     <img src="logo.png" alt="Logo du site" class="logo" />
     <h1 id="register-title">Créer un utilisateur</h1>
     <form id="registerForm" novalidate>
-      <input type="text" id="newUsername" name="newUsername" placeholder="Nom d'utilisateur" required autocomplete="username" aria-label="Nom d'utilisateur" />
-      <input type="password" id="newPassword" name="newPassword" placeholder="Mot de passe" required autocomplete="new-password" aria-label="Mot de passe" />
+      <label for="newUsername">Nom d'utilisateur</label>
+      <input type="text" id="newUsername" name="newUsername" placeholder="Ex : utilisateur123" required autocomplete="username" aria-required="true" />
+      
+      <label for="newPassword">Mot de passe</label>
+      <input type="password" id="newPassword" name="newPassword" placeholder="••••••••" required autocomplete="new-password" aria-required="true" />
+      
       <button type="submit">Enregistrer</button>
     </form>
     <p class="text-center"><a href="login.html">Retour à la connexion</a></p>
   </main>
-  <script src="script.js"></script>
 </body>
 </html>
