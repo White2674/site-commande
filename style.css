@@ -1,170 +1,191 @@
-/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
-/* Reset basique */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
 }
 
 html {
   font-family: 'Poppins', sans-serif;
+  background: #f0f2f5;
+  color: #222;
   font-size: 16px;
   scroll-behavior: smooth;
-  background-color: #fafafa;
-  color: #333;
+  height: 100%;
 }
 
-/* Liens */
-a {
-  color: #ff6600;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-a:hover,
-a:focus {
-  color: #e05500;
-  outline: none;
-  text-decoration: underline;
+body, html {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-/* Boutons */
-button {
-  background-color: #ff6600;
-  border: none;
-  color: #fff;
-  font-weight: 700;
-  padding: 15px 0;
-  font-size: 1.1rem;
-  border-radius: 50px;
-  cursor: pointer;
-  letter-spacing: 1.3px;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
+.container {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(37,117,252,0.4);
+  max-width: 420px;
   width: 100%;
-  max-width: 320px;
-  margin: 1rem auto 0;
-  display: block;
-  box-shadow: 0 4px 10px rgb(255 102 0 / 0.4);
-}
-button:hover,
-button:focus {
-  background-color: #e05500;
-  outline: none;
+  padding: 40px 35px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.4s ease;
 }
 
-/* Formulaires communs */
+.container:hover {
+  box-shadow: 0 25px 60px rgba(37,117,252,0.6);
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2.6rem;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 35px;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  color: rgba(255 255 255 / 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="tel"],
 input[type="datetime-local"],
 textarea {
-  font-family: 'Poppins', sans-serif;
-  width: 100%;
-  max-width: 400px;
-  padding: 14px 20px;
-  font-size: 1rem;
-  border-radius: 50px;
-  border: 1.8px solid #ccc;
-  outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 6px;
-  box-shadow: none;
-  resize: vertical;
+  background: rgba(255 255 255 / 0.15);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #fff;
+  box-shadow: inset 0 2px 8px rgba(255 255 255 / 0.2);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  outline-offset: 3px;
 }
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="tel"]:focus,
-input[type="datetime-local"]:focus,
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255 255 255 / 0.6);
+  font-weight: 300;
+}
+
+input:focus,
 textarea:focus {
-  border-color: #ff6600;
-  box-shadow: 0 0 12px #ff6600aa;
+  background: rgba(255 255 255 / 0.3);
+  box-shadow: 0 0 10px 3px #74b9ff;
+  outline: none;
+  color: #fff;
 }
 
-/* Labels */
-label {
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: #555;
-  margin-top: 1.3rem;
-  display: block;
+textarea {
+  resize: vertical;
+  min-height: 100px;
 }
 
-/* Conteneurs communs */
-.container {
-  max-width: 420px;
-  margin: 40px auto;
-  padding: 40px 30px;
-  background: rgba(255 255 255 / 0.9);
-  border-radius: 25px;
-  box-shadow: 0 14px 40px rgb(0 0 0 / 0.1);
+button {
+  background: #fff;
+  color: #2575fc;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 15px 0;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 1.3px;
+  box-shadow: 0 7px 20px rgba(255,255,255,0.6);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.4s ease;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+button:hover,
+button:focus {
+  background: #74b9ff;
+  color: #fff;
+  box-shadow: 0 10px 30px #74b9ff;
+  outline: none;
+}
+
+.text-center {
+  margin-top: 22px;
+  color: rgba(255 255 255 / 0.85);
+  font-weight: 500;
+  font-size: 0.95rem;
   text-align: center;
 }
 
-/* Titres */
-h1 {
-  font-weight: 700;
-  font-size: 2.8rem;
-  color: #4b0082;
-  margin-bottom: 30px;
-  letter-spacing: 2px;
-  font-family: 'Poppins', sans-serif;
+.text-center a {
+  color: #ffeaa7;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-/* Images logo */
-.logo {
-  width: 80px;
-  margin-bottom: 25px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.text-center a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
-/* Page index : spinner */
+/* Loader for index */
 .spinner {
-  border: 4px solid #eee;
-  border-top: 4px solid #4b0082;
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
   animation: spin 1s linear infinite;
-  margin-bottom: 15px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 20px;
 }
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* Texte général centré */
-.text-center {
-  text-align: center;
-  color: #555;
-  font-size: 1rem;
-  margin-top: 10px;
-}
-
-/* Media Queries */
+/* Responsive */
 @media (max-width: 480px) {
   .container {
-    max-width: 90%;
-    padding: 30px 20px;
+    padding: 35px 25px;
+    max-width: 100%;
+    border-radius: 15px;
   }
+
   h1 {
     font-size: 2rem;
   }
+
   button {
-    max-width: 100%;
-  }
-  input[type="text"],
-  input[type="password"],
-  input[type="tel"],
-  input[type="datetime-local"],
-  textarea {
-    max-width: 100%;
+    font-size: 1rem;
+    padding: 13px 0;
   }
 }
