@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Créer un utilisateur</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Créer un compte</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="container">
+  <div class="container">
     <div class="card">
-      <h1 class="title">Créer un utilisateur</h1>
-      <form id="registerForm" class="form">
-        <input type="text" id="newUsername" placeholder="Nom d'utilisateur" required />
-        <input type="password" id="newPassword" placeholder="Mot de passe" required />
-        <button type="submit" class="btn">Enregistrer</button>
+      <h1 class="title">Créer un compte</h1>
+      <form class="form" onsubmit="register(event)">
+        <input type="password" id="adminCode" placeholder="Mot de passe admin" required>
+        <input type="text" id="newUsername" placeholder="Nom d'utilisateur" required>
+        <input type="password" id="newPassword" placeholder="Mot de passe" required>
+        <button type="submit" class="btn">Créer</button>
       </form>
-      <p class="form-footer">
-        <a href="login.html">Retour</a>
-      </p>
     </div>
-  </main>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
