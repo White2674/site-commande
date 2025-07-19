@@ -1,22 +1,19 @@
-.send-btn {
-  display: block;
-  margin: 40px auto 0 auto;
-  padding: 18px 55px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 1.9rem;
-  color: #fff;
-  background: linear-gradient(45deg, #7a3fff, #d95aff);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(122, 63, 255, 0.6);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: background 0.4s ease, box-shadow 0.4s ease;
-}
-
-.send-btn:hover {
-  background: linear-gradient(45deg, #d95aff, #7a3fff);
-  box-shadow: 0 14px 40px rgba(217, 90, 255, 0.8);
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Résumé</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo" class="logo" />
+  </header>
+  <main class="container">
+    <h1>Résumé de la commande</h1>
+    <div id="recap" class="summary"></div>
+    <button class="btn-primary send-btn" onclick="envoyerCommande()">Envoyer la commande</button>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
