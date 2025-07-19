@@ -2,28 +2,22 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Informations de livraison</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Livraison</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="container" role="main" aria-labelledby="delivery-title" style="max-width: 480px;">
-    <img src="logo.png" alt="Logo du site" class="logo" />
-    <h1 id="delivery-title">Informations de livraison</h1>
-    <form id="deliveryForm" novalidate>
-      <label for="contactName">Nom du contact</label>
-      <input type="text" id="contactName" name="contactName" placeholder="Votre nom complet" required autocomplete="name" aria-required="true" />
-      
-      <label for="phoneNumber">Numéro à contacter</label>
-      <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+33 6 12 34 56 78" pattern="[\d\s+()-]{6,15}" required aria-required="true" />
-      
-      <label for="deliveryDate">Date et heure de livraison</label>
-      <input type="datetime-local" id="deliveryDate" name="deliveryDate" required aria-required="true" />
-      
-      <label for="comments">Commentaire (facultatif)</label>
-      <textarea id="comments" name="comments" placeholder="Informations supplémentaires..."></textarea>
-      
-      <button type="submit">Continuer</button>
-    </form>
+  <main class="container">
+    <div class="card">
+      <h1 class="title">Informations de Livraison</h1>
+      <form id="deliveryForm" class="form">
+        <input type="text" id="contactName" placeholder="Nom du contact" required />
+        <input type="text" id="phoneNumber" placeholder="Numéro à contacter" required />
+        <input type="datetime-local" id="deliveryDate" required />
+        <textarea id="comments" placeholder="Commentaire... (facultatif)"></textarea>
+        <button type="submit" class="btn">Continuer</button>
+      </form>
+    </div>
   </main>
 </body>
 </html>
