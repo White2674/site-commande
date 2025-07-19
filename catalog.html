@@ -1,1 +1,37 @@
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Catalogue</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1 class="title">Catalogue</h1>
+      <div class="catalog-list">
+        <div class="product-card">
+          <img src="https://via.placeholder.com/80" alt="Produit 1">
+          <div class="info">
+            <h2>Produit 1</h2>
+            <p>Prix : 10€</p>
+          </div>
+          <button class="btn" onclick="addToCart('Produit 1', 10)">Ajouter</button>
+        </div>
+        <div class="product-card">
+          <img src="https://via.placeholder.com/80" alt="Produit 2">
+          <div class="info">
+            <h2>Produit 2</h2>
+            <p>Prix : 15€</p>
+          </div>
+          <button class="btn" onclick="addToCart('Produit 2', 15)">Ajouter</button>
+        </div>
+      </div>
+      <div class="form-footer">
+        <a href="summary.html">Voir le récapitulatif</a>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
