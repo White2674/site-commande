@@ -1,387 +1,301 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Catalogue Ultra Moderne</title>
-<style>
-  /* Import Poppins font */
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
-  /* Reset */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+:root {
+  --primary-color: #5a4da7; /* violet moderne */
+  --accent-color: #ff6363; /* corail */
+  --bg-gradient-start: #f0f2f7;
+  --bg-gradient-end: #c7d2fe;
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-shadow: rgba(90, 77, 167, 0.25);
+  --text-color: #2e2e3a;
+  --text-muted: #777a8b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-color);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: rgba(255 255 255 / 0.3);
+  backdrop-filter: blur(10px);
+  padding: 25px 0;
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  height: 70px;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.07));
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.logo:hover {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.container {
+  max-width: 960px;
+  width: 90%;
+  margin: 50px auto 100px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  box-shadow: 0 10px 40px var(--glass-shadow);
+  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  transition: box-shadow 0.4s ease;
+}
+
+.container:hover {
+  box-shadow: 0 15px 60px rgba(90, 77, 167, 0.35);
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 3.2rem;
+  text-align: center;
+  color: var(--primary-color);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  user-select: none;
+  text-shadow: 0 2px 5px rgba(90, 77, 167, 0.35);
+}
+
+.catalog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  gap: 40px;
+}
+
+.product-card {
+  background: rgba(255 255 255 / 0.35);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  box-shadow: 0 6px 25px rgba(90, 77, 167, 0.15);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #5a4da7, #ff6363);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+  filter: blur(10px);
+}
+
+.product-card:hover::before {
+  opacity: 0.25;
+}
+
+.product-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(90, 77, 167, 0.3);
+  z-index: 5;
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+.info {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.info h2 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 3px rgba(90, 77, 167, 0.25);
+}
+
+.info p {
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-bottom: 25px;
+}
+
+input[type="number"] {
+  width: 100%;
+  max-width: 120px;
+  padding: 14px 20px;
+  font-size: 1.2rem;
+  border-radius: 18px;
+  border: 2px solid transparent;
+  background: rgba(255 255 255 / 0.8);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
+  color: var(--text-color);
+  font-weight: 700;
+  text-align: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+input[type="number"]:focus {
+  border-color: var(--accent-color);
+  background: rgba(255 255 255 / 1);
+  box-shadow: 0 0 15px var(--accent-color);
+  outline: none;
+}
+
+.validate-btn {
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  color: white;
+  font-weight: 800;
+  font-size: 1.8rem;
+  padding: 20px 60px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  align-self: center;
+  box-shadow:
+    0 5px 15px var(--primary-color),
+    0 10px 30px var(--accent-color);
+  transition: box-shadow 0.4s ease, background 0.4s ease;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.validate-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+  opacity: 0;
+  transform: rotate(25deg);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.validate-btn:hover::before {
+  opacity: 1;
+}
+
+.validate-btn:hover {
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+  box-shadow:
+    0 8px 20px var(--accent-color),
+    0 15px 40px var(--primary-color);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+input, button {
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  user-select: none;
+}
+
+/* Form inputs styling */
+form input[type="text"],
+form input[type="password"],
+form input[type="datetime-local"],
+form textarea {
+  width: 100%;
+  padding: 16px 20px;
+  margin: 16px 0 32px;
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  font-weight: 600;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="datetime-local"]:focus,
+form textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 12px var(--primary-color);
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .container {
+    padding: 40px 30px;
   }
 
-  body, html {
-    height: 100%;
-    background: linear-gradient(135deg, #090909 0%, #1a1a1a 100%);
-    color: #eee;
-    overflow-x: hidden;
-  }
-
-  /* Background animated gradient */
-  @keyframes gradientBG {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  body {
-    background: linear-gradient(270deg, #120c6e, #61127a, #c53f5a, #e9a746);
-    background-size: 800% 800%;
-    animation: gradientBG 20s ease infinite;
-  }
-
-  /* Header */
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    padding: 25px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: transparent;
-    transition: background 0.4s ease, box-shadow 0.4s ease;
-    z-index: 1000;
-  }
-
-  header.scrolled {
-    background: rgba(18, 12, 110, 0.9);
-    box-shadow: 0 4px 30px rgba(18, 12, 110, 0.7);
-    backdrop-filter: blur(8px);
-  }
-
-  .logo {
-    font-weight: 700;
-    font-size: 1.8rem;
-    color: #fff;
-    letter-spacing: 4px;
-    user-select: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    text-shadow: 0 0 8px #e9a746;
-  }
-
-  nav a {
-    color: #eee;
-    font-weight: 500;
-    margin-left: 35px;
-    font-size: 1.1rem;
-    text-decoration: none;
-    position: relative;
-    transition: color 0.3s ease;
-  }
-
-  nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -6px;
-    left: 0;
-    background: #e9a746;
-    transition: width 0.3s ease;
-  }
-
-  nav a:hover {
-    color: #e9a746;
-  }
-
-  nav a:hover::after {
-    width: 100%;
-  }
-
-  /* Main container */
-  main {
-    margin-top: 120px;
-    max-width: 1100px;
-    padding: 0 30px 80px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* Title with animation */
   h1 {
-    font-weight: 700;
-    font-size: 3.8rem;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 12px;
-    color: #fff;
-    margin-bottom: 60px;
-    text-shadow: 0 0 15px #e9a746aa;
-    animation: glowText 3s ease-in-out infinite alternate;
+    font-size: 2.6rem;
+    letter-spacing: 3px;
   }
 
-  @keyframes glowText {
-    from {
-      text-shadow:
-        0 0 10px #e9a746cc,
-        0 0 20px #e9a746cc,
-        0 0 30px #e9a746cc,
-        0 0 40px #e9a746cc;
-    }
-    to {
-      text-shadow:
-        0 0 20px #c53f5aee,
-        0 0 30px #c53f5aee,
-        0 0 40px #c53f5aee,
-        0 0 50px #c53f5aee;
-    }
-  }
-
-  /* Catalog grid */
   .catalog-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 40px;
-  }
-
-  /* Product card */
-  .product-card {
-    background: rgba(255,255,255,0.05);
-    border-radius: 20px;
-    box-shadow:
-      0 8px 32px 0 rgba(255,255,255,0.05);
-    padding: 30px 25px 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.12);
-    cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
-    user-select: none;
-  }
-
-  .product-card:hover {
-    transform: translateY(-12px) scale(1.05);
-    box-shadow:
-      0 12px 35px 0 rgba(233, 167, 70, 0.6),
-      0 0 25px 4px rgba(233, 167, 70, 0.5);
-    border-color: #e9a746;
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 
   .product-card img {
-    width: 100%;
-    max-height: 190px;
-    object-fit: cover;
-    border-radius: 15px;
-    margin-bottom: 28px;
-    box-shadow: 0 0 10px 1px rgba(233, 167, 70, 0.25);
-    transition: filter 0.3s ease;
-  }
-
-  .product-card:hover img {
-    filter: brightness(1.1);
-  }
-
-  .info {
-    width: 100%;
-    text-align: center;
-  }
-
-  .info h2 {
-    font-weight: 600;
-    font-size: 1.7rem;
-    color: #e9a746;
-    margin-bottom: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-
-  .info p {
-    font-weight: 400;
-    font-size: 1.15rem;
-    color: #ddd;
-    margin-bottom: 22px;
-    min-height: 52px;
+    height: 160px;
   }
 
   input[type="number"] {
-    width: 100%;
-    max-width: 130px;
-    padding: 14px 18px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 30px;
-    border: 2px solid #444;
-    background: transparent;
-    color: #eee;
-    text-align: center;
-    transition: border-color 0.3s ease;
-    outline-offset: 2px;
+    max-width: 100%;
   }
 
-  input[type="number"]:focus {
-    border-color: #e9a746;
-    box-shadow: 0 0 10px #e9a746aa;
-    outline: none;
-  }
-
-  /* Neon button */
   .validate-btn {
-    margin-top: 30px;
-    background: transparent;
-    border: 2px solid #e9a746;
-    color: #e9a746;
-    font-weight: 700;
-    font-size: 1.6rem;
-    padding: 18px 50px;
-    border-radius: 50px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    box-shadow:
-      0 0 10px #e9a746,
-      0 0 30px #e9a746,
-      0 0 40px #c53f5a;
-    transition: box-shadow 0.3s ease, color 0.3s ease, background 0.3s ease;
-    user-select: none;
+    padding: 18px 45px;
+    font-size: 1.5rem;
   }
-
-  .validate-btn:hover {
-    background: #e9a746;
-    color: #120c6e;
-    box-shadow:
-      0 0 15px #e9a746,
-      0 0 45px #e9a746,
-      0 0 60px #c53f5a;
-  }
-
-  /* Footer */
-  footer {
-    background: #120c6e;
-    padding: 25px 0;
-    text-align: center;
-    color: #e9a746;
-    font-weight: 600;
-    letter-spacing: 1.8px;
-    user-select: none;
-    box-shadow: inset 0 8px 15px -8px #c53f5a;
-  }
-
-  /* Footer social icons */
-  .social-links {
-    margin-top: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-  }
-
-  .social-links a {
-    color: #e9a746;
-    font-size: 1.8rem;
-    transition: color 0.3s ease;
-  }
-
-  .social-links a:hover {
-    color: #c53f5a;
-    text-shadow: 0 0 8px #c53f5a;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    header {
-      padding: 18px 20px;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      letter-spacing: 8px;
-      margin-bottom: 40px;
-    }
-
-    .catalog-list {
-      gap: 28px;
-    }
-
-    .product-card {
-      padding: 25px 20px 35px;
-    }
-
-    input[type="number"] {
-      max-width: 100%;
-    }
-
-    .validate-btn {
-      padding: 14px 40px;
-      font-size: 1.3rem;
-      letter-spacing: 3px;
-    }
-  }
-</style>
-</head>
-<body>
-
-<header id="header">
-  <div class="logo">IGOOO</div>
-  <nav>
-    <a href="#catalog">Catalogue</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<main>
-  <h1>Catalogue</h1>
-  <div class="catalog-list" id="catalog">
-    <!-- Exemple produit -->
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=400&q=80" alt="Produit 1" />
-      <div class="info">
-        <h2>Produit 1</h2>
-        <p>Description moderne et épurée du produit 1.</p>
-        <input type="number" min="0" placeholder="Quantité" />
-      </div>
-    </div>
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" alt="Produit 2" />
-      <div class="info">
-        <h2>Produit 2</h2>
-        <p>Une description courte et impactante.</p>
-        <input type="number" min="0" placeholder="Quantité" />
-      </div>
-    </div>
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1539887535871-9b9dcb7780e1?auto=format&fit=crop&w=400&q=80" alt="Produit 3" />
-      <div class="info">
-        <h2>Produit 3</h2>
-        <p>Présentation ultra moderne avec design épuré.</p>
-        <input type="number" min="0" placeholder="Quantité" />
-      </div>
-    </div>
-  </div>
-  <button class="validate-btn">Valider</button>
-</main>
-
-<footer id="contact">
-  &copy; 2025 IGOOO — Créé avec 💜 par toi
-  <div class="social-links">
-    <a href="#" aria-label="Facebook" title="Facebook">📘</a>
-    <a href="#" aria-label="Twitter" title="Twitter">🐦</a>
-    <a href="#" aria-label="Instagram" title="Instagram">📸</a>
-  </div>
-</footer>
-
-<script>
-  // Change header background on scroll
-  window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
-    if(window.scrollY > 50){
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-</script>
-
-</body>
-</html>
-
+}
