@@ -6,17 +6,20 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header><img src="logo.png" alt="Logo" class="logo" /></header>
-  <div class="container">
+  <header>
+    <img src="logo.png" alt="Logo" class="logo" />
+  </header>
+  <main class="container">
     <h1>Informations de Livraison</h1>
-    <form id="deliveryForm">
-      <input type="text" id="contactName" placeholder="Nom du contact" required />
-      <input type="text" id="phoneNumber" placeholder="Numéro à contacter" required />
+    <form id="deliveryForm" class="form">
+      <input type="text" id="contactName" placeholder="Nom du contact" required autocomplete="name" />
+      <input type="tel" id="phoneNumber" placeholder="Numéro à contacter" required pattern="[0-9+\s-]{6,15}" title="Entrez un numéro valide" />
+      <label for="deliveryDate" class="label">Date et heure de livraison</label>
       <input type="datetime-local" id="deliveryDate" required />
-      <textarea id="comments" placeholder="Commentaire... (facultatif)"></textarea>
-      <button type="submit">Continuer</button>
+      <textarea id="comments" placeholder="Commentaire... (facultatif)" rows="3"></textarea>
+      <button type="submit" class="btn-primary">Continuer</button>
     </form>
-  </div>
+  </main>
   <script src="script.js"></script>
 </body>
 </html>
