@@ -1,129 +1,93 @@
-css
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fff;
+  color: #222;
   margin: 0;
-  background: #0f0f0f;
-  color: #ffffff;
+  padding: 0;
 }
 header {
-  background: linear-gradient(90deg, #ff6f00, #9c27b0);
+  background: #4b0082; /* violet foncé */
   padding: 15px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 .logo {
   height: 60px;
-  filter: drop-shadow(2px 2px 3px black);
+  filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
 }
 .container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 40px auto;
-  background: #1a1a1a;
   padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(255, 111, 0, 0.2);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 h1 {
+  color: #4b0082;
   text-align: center;
-  color: #ff9800;
   margin-bottom: 30px;
-}
-input, textarea, button {
-  width: 100%;
-  padding: 14px;
-  margin: 12px 0;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #333;
-  background: #2a2a2a;
-  color: white;
-  font-family: inherit;
-}
-button {
-  background: linear-gradient(to right, #ff6f00, #ab47bc);
-  border: none;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-button:hover {
-  transform: scale(1.05);
-  opacity: 0.95;
-}
-textarea {
-  resize: vertical;
-  min-height: 80px;
 }
 .grid-catalog {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.grid-catalog > div {
+.product-card {
   display: flex;
   align-items: center;
-  background: #2a2a2a;
-  padding: 20px;
+  border: 1px solid #ddd;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(156, 39, 176, 0.2);
-  transition: transform 0.2s;
+  padding: 15px;
+  transition: box-shadow 0.3s ease;
+  background: #fafafa;
 }
-.grid-catalog > div:hover {
-  transform: translateY(-4px);
+.product-card:hover {
+  box-shadow: 0 8px 20px rgba(75, 0, 130, 0.3);
 }
-.grid-catalog img {
-  height: 100px;
-  width: 100px;
+.product-card img {
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: 10px;
   margin-right: 20px;
+  border: 1px solid #ccc;
 }
-.grid-catalog .info {
+.info {
   flex: 1;
-  color: #e0e0e0;
 }
-.grid-catalog .info h2 {
-  margin: 0;
-  color: #ab47bc;
-  font-size: 20px;
+.info h2 {
+  margin: 0 0 10px 0;
+  color: #4b0082;
+  font-weight: 600;
 }
-.grid-catalog .info p {
-  margin: 5px 0;
-  color: #ffb74d;
+.info p {
+  margin: 0 0 10px 0;
+  color: #555;
+  font-weight: 500;
 }
-.validate-btn, .send-btn {
-  display: block;
-  margin: 30px auto;
-  max-width: 320px;
-  font-weight: bold;
-  background: linear-gradient(to right, #ff6f00, #9c27b0);
-  color: white;
-  border-radius: 30px;
-  padding: 16px;
-  font-size: 18px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-#recap div {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background: #222;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-#recap button {
-  background: crimson;
-  padding: 5px 10px;
-  font-size: 14px;
-  margin-left: 10px;
+input[type="number"] {
+  width: 80px;
+  padding: 8px;
+  font-size: 16px;
   border-radius: 6px;
+  border: 1px solid #bbb;
+  color: #222;
 }
-#totaux {
-  margin-top: 30px;
+.validate-btn {
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 14px 30px;
   font-size: 18px;
-  font-weight: bold;
-  color: #ff9800;
-  text-align: right;
+  font-weight: 600;
+  color: #fff;
+  background: #ff6f00; /* orange vif */
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255, 111, 0, 0.5);
+  transition: background 0.3s ease;
+}
+.validate-btn:hover {
+  background: #e65c00;
 }
