@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Connexion</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header><img src="logo.png" alt="Logo" class="logo" /></header>
   <div class="container">
-    <div class="card">
-      <h1 class="title">Connexion</h1>
-      <form class="form" onsubmit="login(event)">
-        <input type="text" id="username" placeholder="Nom d'utilisateur" required>
-        <input type="password" id="password" placeholder="Mot de passe" required>
-        <button type="submit" class="btn">Se connecter</button>
-      </form>
-      <div class="form-footer">
-        <a href="register.html">Créer un compte</a>
-      </div>
-    </div>
+    <h1>Connexion</h1>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Nom d'utilisateur" required />
+      <input type="password" id="password" placeholder="Mot de passe" required />
+      <button type="submit">Se connecter</button>
+    </form>
+    <p><a href="register.html">Créer un utilisateur</a></p>
   </div>
   <script src="script.js"></script>
 </body>
