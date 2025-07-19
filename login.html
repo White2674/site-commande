@@ -1,21 +1,33 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <title>Connexion</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header><img src="logo.png" alt="Logo" class="logo" /></header>
-  <div class="container">
-    <h1>Connexion</h1>
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Nom d'utilisateur" required />
-      <input type="password" id="password" placeholder="Mot de passe" required />
-      <button type="submit">Se connecter</button>
-    </form>
-    <p><a href="register.html">Créer un utilisateur</a></p>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
+input, textarea, button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  border: 2px solid #a67fff;
+  padding: 14px 20px;
+  color: #3f0071;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline-offset: 3px;
+  background: #fff;
+}
+
+input:focus, textarea:focus {
+  border-color: #7a3fff;
+  box-shadow: 0 0 12px #7a3fff88;
+}
+
+button {
+  background: linear-gradient(45deg, #7a3fff, #d95aff);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(122, 63, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #d95aff, #7a3fff);
+  box-shadow: 0 12px 30px rgba(217, 90, 255, 0.8);
+}
