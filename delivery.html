@@ -6,27 +6,24 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header style="text-align:center; margin-top: 50px;">
-    <img src="logo.png" alt="Logo du site" class="logo" style="filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));" />
-  </header>
-  <main class="container" role="main" aria-labelledby="delivery-title" style="max-width:600px;">
+  <main class="container" role="main" aria-labelledby="delivery-title" style="max-width: 480px;">
+    <img src="logo.png" alt="Logo du site" class="logo" />
     <h1 id="delivery-title">Informations de livraison</h1>
     <form id="deliveryForm" novalidate>
       <label for="contactName">Nom du contact</label>
-      <input type="text" id="contactName" name="contactName" placeholder="Votre nom" required autocomplete="name" aria-required="true" />
-
+      <input type="text" id="contactName" name="contactName" placeholder="Votre nom complet" required autocomplete="name" aria-required="true" />
+      
       <label for="phoneNumber">Numéro à contacter</label>
-      <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+33 6 12 34 56 78" required pattern="[0-9+\s-]{6,15}" aria-required="true" />
-
+      <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+33 6 12 34 56 78" pattern="[\d\s+()-]{6,15}" required aria-required="true" />
+      
       <label for="deliveryDate">Date et heure de livraison</label>
       <input type="datetime-local" id="deliveryDate" name="deliveryDate" required aria-required="true" />
-
+      
       <label for="comments">Commentaire (facultatif)</label>
       <textarea id="comments" name="comments" placeholder="Informations supplémentaires..."></textarea>
-
+      
       <button type="submit">Continuer</button>
     </form>
   </main>
-  <script src="script.js"></script>
 </body>
 </html>
