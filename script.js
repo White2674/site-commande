@@ -1,77 +1,88 @@
-// Gestion des utilisateurs stockés dans localStorage
-const utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || {};
+// script.js
 
-// LOGIN
-if (document.getElementById("loginForm")) {
-  document.getElementById("loginForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const u = document.getElementById("username").value.trim();
-    const p = document.getElementById("password").value;
-    if (utilisateurs[u] && utilisateurs[u] === p) {
-      sessionStorage.setItem("utilisateur", u);
-      window.location.href = "delivery.html";
-    } else {
-      alert("Identifiants incorrects");
-    }
-  });
+// Vérification utilisateur (admin code)
+const ADMIN_CODE = "admin123"; // change ce code pour plus de sécurité
+
+function login(event) {
+  event.preventDefault();
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const storedPassword = localStorage.getItem(`user_${username}`);
+  if (storedPassword && storedPassword === password) {
+    sessionStorage.setItem("user", username);
+    window.location.href = "delivery.html";
+  } else {
+    alert("Identifiants incorrects.");
+  }
 }
 
-// REGISTER
-if (document.getElementById("registerForm")) {
-  document.getElementById("registerForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const newUser = document.getElementById("newUsername").value.trim();
-    const newPass = document.getElementById("newPassword").value;
-    if (utilisateurs[newUser]) {
-      alert("Ce nom d'utilisateur existe déjà.");
-      return;
-    }
-    utilisateurs[newUser] = newPass;
-    localStorage.setItem("utilisateurs", JSON.stringify(utilisateurs));
-    alert("Utilisateur créé !");
+function register(event) {
+  event.preventDefault();
+  const code = document.getElementById("adminCode").value;
+  const username = document.getElementById("newUsername").value;
+  const password = document.getElementById("newPassword").value;
+
+  if (code !== ADMIN_CODE) {
+    alert("Code administrateur incorrect.");
+    return;
+  }
+
+  if (localStorage.getItem(`user_${username}`)) {
+    alert("Nom d'utilisateur déjà pris.");
+  } else {
+    localStorage.setItem(`user_${username}`, password);
+    alert("Compte créé !");
     window.location.href = "login.html";
-  });
+  }
 }
 
-// DELIVERY FORM
-if (document.getElementById("deliveryForm")) {
-  document.getElementById("deliveryForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    sessionStorage.setItem("contact", document.getElementById("contactName").value.trim());
-    sessionStorage.setItem("phone", document.getElementById("phoneNumber").value.trim());
-    sessionStorage.setItem("date", document.getElementById("deliveryDate").value);
-    sessionStorage.setItem("comments", document.getElementById("comments").value.trim());
-    window.location.href = "catalog.html";
-  });
+function saveDelivery(event) {
+  event.preventDefault();
+  const nom = document.getElementById("nom").value;
+  const adresse = document.getElementById("adresse").value;
+  const infos = document.getElementById("infos").value;
+
+  const livraison = { nom, adresse, infos };
+  sessionStorage.setItem("livraison", JSON.stringify(livraison));
+  window.location.href = "catalog.html";
 }
 
-// PRODUITS (Catalogue)
-const produits = [
-  {
-    nom: "Chocolat Noir",
-    prix: 5,
-    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=160&q=80"
-  },
-  {
-    nom: "Jus d'Orange",
-    prix: 3,
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=160&q=80"
-  },
-  {
-    nom: "Café Moulu",
-    prix: 7,
-    image: "https://media.discordapp.net/attachments/1009082381862445128/1393295230257598545/image.png?auto=format&fit=crop&w=160&q=80"
-  },
-  {
-    nom: "Thé Vert",
-    prix: 4,
-    image: "https://media.discordapp.net/attachments/1009082381862445128/1393295230257598545/image.png?auto=format&fit=crop&w=160&q=80"
-  },
-  {
-    nom: "Eau Minérale",
-    prix: 2,
-    image: "https://media.discordapp.net/attachments/1009082381862445128/1393295230257598545/image.png?auto=format&fit=crop&w=160&q=80"
-  },
-  {
-    nom: "Biscuit Fourré",
-    prix: 6,
+let panier = JSON.parse(sessionStorage.getItem("panier") || "[]");
+
+function addToCart(nom, prix) {
+  panier.push({ nom, prix });
+  sessionStorage.setItem("panier", JSON.stringify(panier));
+  alert(`${nom} ajouté au panier.`);
+}
+
+function afficherRecap() {
+  const panier = JSON.parse(sessionStorage.getItem("panier") || "[]");
+  const livraison = JSON.parse(sessionStorage.getItem("livraison") || "{}");
+  const recap = document.getElementById("recap");
+  const totaux = document.getElementById("totaux");
+
+  if (!recap || !totaux) return;
+
+  recap.innerHTML = `
+    <h2>Livraison</h2>
+    <p><strong>Nom:</strong> ${livraison.nom}</p>
+    <p><strong>Adresse:</strong> ${livraison.adresse}</p>
+    <p><strong>Infos:</strong> ${livraison.infos}</p>
+    <h2>Produits</h2>
+    <ul>
+      ${panier.map(p => `<li>${p.nom} - ${p.prix}€</li>`).join("")}
+    </ul>
+  `;
+
+  const total = panier.reduce((s, p) => s + p.prix, 0);
+  totaux.innerHTML = `<h3>Total : ${total}€</h3>`;
+}
+
+function envoyerCommande() {
+  alert("Commande envoyée !");
+  sessionStorage.clear();
+  window.location.href = "login.html";
+}
+
+window.onload = afficherRecap;
