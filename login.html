@@ -2,23 +2,23 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Connexion</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="container" role="main" aria-labelledby="login-title">
-    <img src="logo.png" alt="Logo du site" class="logo" />
-    <h1 id="login-title">Connexion</h1>
-    <form id="loginForm" novalidate>
-      <label for="username">Nom d'utilisateur</label>
-      <input type="text" id="username" name="username" placeholder="Ex : utilisateur123" required autocomplete="username" aria-required="true" />
-      
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password" aria-required="true" />
-      
-      <button type="submit">Se connecter</button>
-    </form>
-    <p class="text-center">Pas encore de compte ? <a href="register.html">Créer un utilisateur</a></p>
+  <main class="container">
+    <div class="card">
+      <h1 class="title">Connexion</h1>
+      <form id="loginForm" class="form">
+        <input type="text" id="username" placeholder="Nom d'utilisateur" required />
+        <input type="password" id="password" placeholder="Mot de passe" required />
+        <button type="submit" class="btn">Se connecter</button>
+      </form>
+      <p class="form-footer">
+        <a href="register.html">Créer un utilisateur</a>
+      </p>
+    </div>
   </main>
 </body>
 </html>
