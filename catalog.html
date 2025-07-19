@@ -6,10 +6,61 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header><img src="logo.png" alt="Logo" class="logo" /></header>
+  <header>
+    <img src="logo.png" alt="Logo" class="logo" />
+  </header>
   <div class="container">
     <h1>Catalogue</h1>
-    <div id="catalog" class="grid-catalog"></div>
+    <div id="catalog" class="grid-catalog">
+      <div class="product-card">
+        <img src="img/product1.jpg" alt="Produit 1" />
+        <div class="info">
+          <h2>Produit 1 - Chocolat Noir</h2>
+          <p>Prix : 5 €</p>
+          <input type="number" min="0" value="0" data-name="Chocolat Noir" data-price="5" />
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="img/product2.jpg" alt="Produit 2" />
+        <div class="info">
+          <h2>Produit 2 - Jus d'Orange</h2>
+          <p>Prix : 3 €</p>
+          <input type="number" min="0" value="0" data-name="Jus d'Orange" data-price="3" />
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="img/product3.jpg" alt="Produit 3" />
+        <div class="info">
+          <h2>Produit 3 - Café Moulu</h2>
+          <p>Prix : 7 €</p>
+          <input type="number" min="0" value="0" data-name="Café Moulu" data-price="7" />
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="img/product4.jpg" alt="Produit 4" />
+        <div class="info">
+          <h2>Produit 4 - Thé Vert</h2>
+          <p>Prix : 4 €</p>
+          <input type="number" min="0" value="0" data-name="Thé Vert" data-price="4" />
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="img/product5.jpg" alt="Produit 5" />
+        <div class="info">
+          <h2>Produit 5 - Eau Minérale</h2>
+          <p>Prix : 2 €</p>
+          <input type="number" min="0" value="0" data-name="Eau Minérale" data-price="2" />
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="img/product6.jpg" alt="Produit 6" />
+        <div class="info">
+          <h2>Produit 6 - Biscuit Fourré</h2>
+          <p>Prix : 6 €</p>
+          <input type="number" min="0" value="0" data-name="Biscuit Fourré" data-price="6" />
+        </div>
+      </div>
+    </div>
     <button class="validate-btn" onclick="validerCommande()">Voir le récapitulatif</button>
   </div>
   <script src="script.js"></script>
