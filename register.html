@@ -6,16 +6,20 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header><img src="logo.png" alt="Logo" class="logo" /></header>
-  <div class="container">
+  <header>
+    <img src="logo.png" alt="Logo" class="logo" />
+  </header>
+  <main class="container">
     <h1>Créer un utilisateur</h1>
-    <form id="registerForm">
-      <input type="text" id="newUsername" placeholder="Nom d'utilisateur" required />
-      <input type="password" id="newPassword" placeholder="Mot de passe" required />
-      <button type="submit">Enregistrer</button>
+    <form id="registerForm" class="form">
+      <input type="text" id="newUsername" placeholder="Nom d'utilisateur" required autocomplete="username" />
+      <input type="password" id="newPassword" placeholder="Mot de passe" required autocomplete="new-password" />
+      <button type="submit" class="btn-primary">Enregistrer</button>
     </form>
-    <p><a href="login.html">Retour</a></p>
-  </div>
+    <p class="text-center">
+      <a href="login.html" class="link">Retour</a>
+    </p>
+  </main>
   <script src="script.js"></script>
 </body>
 </html>
