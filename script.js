@@ -1,11 +1,12 @@
+// Gestion des utilisateurs stockés dans localStorage
 const utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || {};
 
-// Connexion
+// LOGIN
 if (document.getElementById("loginForm")) {
-  document.getElementById("loginForm").addEventListener("submit", function (e) {
+  document.getElementById("loginForm").addEventListener("submit", (e) => {
     e.preventDefault();
-    const u = username.value;
-    const p = password.value;
+    const u = document.getElementById("username").value.trim();
+    const p = document.getElementById("password").value;
     if (utilisateurs[u] && utilisateurs[u] === p) {
       sessionStorage.setItem("utilisateur", u);
       window.location.href = "delivery.html";
@@ -15,74 +16,62 @@ if (document.getElementById("loginForm")) {
   });
 }
 
-// Enregistrement
+// REGISTER
 if (document.getElementById("registerForm")) {
-  document.getElementById("registerForm").addEventListener("submit", function (e) {
+  document.getElementById("registerForm").addEventListener("submit", (e) => {
     e.preventDefault();
-    utilisateurs[newUsername.value] = newPassword.value;
+    const newUser = document.getElementById("newUsername").value.trim();
+    const newPass = document.getElementById("newPassword").value;
+    if (utilisateurs[newUser]) {
+      alert("Ce nom d'utilisateur existe déjà.");
+      return;
+    }
+    utilisateurs[newUser] = newPass;
     localStorage.setItem("utilisateurs", JSON.stringify(utilisateurs));
     alert("Utilisateur créé !");
     window.location.href = "login.html";
   });
 }
 
-// Livraison
+// DELIVERY FORM
 if (document.getElementById("deliveryForm")) {
-  document.getElementById("deliveryForm").addEventListener("submit", function (e) {
+  document.getElementById("deliveryForm").addEventListener("submit", (e) => {
     e.preventDefault();
-    sessionStorage.setItem("contact", contactName.value);
-    sessionStorage.setItem("phone", phoneNumber.value);
-    sessionStorage.setItem("date", deliveryDate.value);
+    sessionStorage.setItem("contact", document.getElementById("contactName").value.trim());
+    sessionStorage.setItem("phone", document.getElementById("phoneNumber").value.trim());
+    sessionStorage.setItem("date", document.getElementById("deliveryDate").value);
+    sessionStorage.setItem("comments", document.getElementById("comments").value.trim());
     window.location.href = "catalog.html";
   });
 }
 
-// Catalogue
+// PRODUITS (Catalogue)
 const produits = [
-  { nom: "Pommes", prix: 1.2, image: "https://via.placeholder.com/100" },
-  { nom: "Bananes", prix: 1.0, image: "https://via.placeholder.com/100" },
-  { nom: "Poires", prix: 1.5, image: "https://via.placeholder.com/100" },
-];
-
-if (document.getElementById("catalog")) {
-  const container = document.getElementById("catalog");
-  produits.forEach((p, i) => {
-    container.innerHTML += `
-      <div>
-        <img src="${p.image}" alt="${p.nom}" />
-        <p>${p.nom} - ${p.prix.toFixed(2)} €</p>
-        <input type="number" id="qte${i}" min="0" value="0" />
-      </div>
-      <hr />
-    `;
-  });
-}
-
-function validerCommande() {
-  const commande = produits.map((p, i) => {
-    return {
-      nom: p.nom,
-      prix: p.prix,
-      quantite: parseInt(document.getElementById(`qte${i}`).value)
-    };
-  });
-  sessionStorage.setItem("commande", JSON.stringify(commande));
-  window.location.href = "summary.html";
-}
-
-// Résumé
-if (document.getElementById("recap")) {
-  const commande = JSON.parse(sessionStorage.getItem("commande"));
-  let total = 0;
-  recap.innerHTML = `<p><strong>Contact :</strong> ${sessionStorage.getItem("contact")}</p>
-    <p><strong>Téléphone :</strong> ${sessionStorage.getItem("phone")}</p>
-    <p><strong>Date :</strong> ${sessionStorage.getItem("date")}</p><hr />`;
-  commande.forEach(item => {
-    if (item.quantite > 0) {
-      const prixLigne = item.prix * item.quantite;
-      total += prixLigne;
-      recap.innerHTML += `<p>${item.nom} x ${item.quantite} = ${prixLigne.toFixed(2)} €</p>`;
-    }
-  });
-  recap.innerHTML += `<hr /><h3>Total : ${total.toFixed(2)} €</h3>`;
-}
+  {
+    nom: "Chocolat Noir",
+    prix: 5,
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=160&q=80"
+  },
+  {
+    nom: "Jus d'Orange",
+    prix: 3,
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=160&q=80"
+  },
+  {
+    nom: "Café Moulu",
+    prix: 7,
+    image: "https://media.discordapp.net/attachments/1009082381862445128/1393295230257598545/image.png?auto=format&fit=crop&w=160&q=80"
+  },
+  {
+    nom: "Thé Vert",
+    prix: 4,
+    image: "https://media.discordapp.net/attachments/1009082381862445128/1393295230257598545/image.png?auto=format&fit=crop&w=160&q=80"
+  },
+  {
+    nom: "Eau Minérale",
+    prix: 2,
+    image: "https://media.discordapp.net/attachments/1009082381862445128/1393295230257598545/image.png?auto=format&fit=crop&w=160&q=80"
+  },
+  {
+    nom: "Biscuit Fourré",
+    prix: 6,
