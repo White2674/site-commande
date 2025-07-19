@@ -2,22 +2,130 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Livraison</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Informations de livraison</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background: #f7f7f7;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    header {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header img {
+      height: 70px;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+    }
+    main {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 100%;
+      padding: 40px 50px;
+    }
+    h1 {
+      font-weight: 600;
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      color: #4b0082;
+      text-align: center;
+      letter-spacing: 2px;
+      font-family: 'Poppins', sans-serif;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    label {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 6px;
+      display: block;
+    }
+    input[type="text"],
+    input[type="tel"],
+    input[type="datetime-local"],
+    textarea {
+      font-size: 1rem;
+      padding: 15px 20px;
+      border-radius: 12px;
+      border: 1.8px solid #ccc;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="datetime-local"]:focus,
+    textarea:focus {
+      border-color: #4b0082;
+      box-shadow: 0 0 10px #4b0082aa;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      margin-top: 20px;
+      background: #4b0082;
+      border: none;
+      padding: 18px 0;
+      border-radius: 50px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    button:hover {
+      background: #6a0dad;
+    }
+    @media (max-width: 620px) {
+      main {
+        padding: 30px 25px;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Logo" class="logo" />
+    <img src="logo.png" alt="Logo du site" />
   </header>
-  <main class="container">
-    <h1>Informations de Livraison</h1>
-    <form id="deliveryForm" class="form">
-      <input type="text" id="contactName" placeholder="Nom du contact" required autocomplete="name" />
-      <input type="tel" id="phoneNumber" placeholder="Numéro à contacter" required pattern="[0-9+\s-]{6,15}" title="Entrez un numéro valide" />
-      <label for="deliveryDate" class="label">Date et heure de livraison</label>
-      <input type="datetime-local" id="deliveryDate" required />
-      <textarea id="comments" placeholder="Commentaire... (facultatif)" rows="3"></textarea>
-      <button type="submit" class="btn-primary">Continuer</button>
+  <main role="main" aria-labelledby="delivery-title">
+    <h1 id="delivery-title">Informations de livraison</h1>
+    <form id="deliveryForm" novalidate>
+      <label for="contactName">Nom du contact</label>
+      <input type="text" id="contactName" name="contactName" placeholder="Votre nom" required autocomplete="name" aria-required="true" />
+      
+      <label for="phoneNumber">Numéro à contacter</label>
+      <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+33 6 12 34 56 78" required pattern="[0-9+\s-]{6,15}" aria-required="true" />
+      
+      <label for="deliveryDate">Date et heure de livraison</label>
+      <input type="datetime-local" id="deliveryDate" name="deliveryDate" required aria-required="true" />
+      
+      <label for="comments">Commentaire (facultatif)</label>
+      <textarea id="comments" name="comments" placeholder="Informations supplémentaires..."></textarea>
+      
+      <button type="submit">Continuer</button>
     </form>
   </main>
   <script src="script.js"></script>
