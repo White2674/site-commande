@@ -1,73 +1,74 @@
-/* Fonts importées dans HTML (Anton & Montserrat) */
+/* Polices : Montserrat & Poppins (moderne et lisible) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap');
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  background: #fefefe;
-  color: #111;
+  font-family: 'Poppins', sans-serif;
+  background: #f8f9fa; /* fond très clair et doux */
+  color: #222;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background: #fff;
+  background: #3f0071; /* violet foncé pro */
   padding: 20px 0;
   text-align: center;
-  border-bottom: 2px solid #eee;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 3px 10px rgba(63, 0, 113, 0.3);
 }
 
 .logo {
-  height: 60px;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+  height: 65px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .container {
-  max-width: 900px;
+  max-width: 960px;
   margin: 50px auto;
-  padding: 40px 30px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  padding: 40px 40px 60px 40px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
 }
 
 h1 {
-  font-family: 'Anton', sans-serif;
-  font-weight: 400;
-  font-size: 3rem;
-  color: #4b0082; /* violet foncé */
-  text-transform: uppercase;
-  margin-bottom: 40px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 3.2rem;
+  color: #3f0071;
   text-align: center;
-  letter-spacing: 3px;
+  margin-bottom: 45px;
+  letter-spacing: 2px;
 }
 
 .catalog-list {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 30px;
 }
 
 .product-card {
   display: flex;
   align-items: center;
-  background: #fafafa;
-  border-radius: 10px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  transition: box-shadow 0.3s ease;
+  background: #fff;
+  border-radius: 15px;
+  padding: 25px 30px;
+  border: 1.5px solid #ddd;
+  box-shadow: 0 6px 20px rgba(63, 0, 113, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-  box-shadow: 0 8px 24px rgba(75, 0, 130, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(63, 0, 113, 0.25);
 }
 
 .product-card img {
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 14px;
-  margin-right: 30px;
-  border: 1px solid #ccc;
+  border-radius: 18px;
+  margin-right: 40px;
+  border: 1.8px solid #b79fff;
 }
 
 .info {
@@ -75,59 +76,59 @@ h1 {
 }
 
 .info h2 {
-  font-family: 'Anton', sans-serif;
-  font-weight: 400;
-  font-size: 1.8rem;
-  color: #4b0082;
-  margin: 0 0 15px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #3f0071;
+  margin: 0 0 18px 0;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 .info p {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #333;
-  margin: 0 0 15px 0;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 20px;
 }
 
 input[type="number"] {
-  width: 100px;
-  padding: 10px 15px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 1.1rem;
-  border-radius: 10px;
-  border: 1.5px solid #bbb;
-  color: #222;
+  width: 110px;
+  padding: 14px 18px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  border: 2px solid #a67fff;
+  color: #3f0071;
   outline-offset: 3px;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input[type="number"]:focus {
-  border-color: #ff6600; /* orange */
-  box-shadow: 0 0 8px #ff6600aa;
+  border-color: #7a3fff;
+  box-shadow: 0 0 12px #7a3fff88;
 }
 
 .validate-btn {
   display: block;
-  margin: 50px auto 0 auto;
-  padding: 18px 45px;
-  font-family: 'Anton', sans-serif;
-  font-weight: 400;
-  font-size: 1.8rem;
+  margin: 60px auto 0 auto;
+  padding: 20px 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
   color: #fff;
-  background: #4b0082; /* violet */
+  background: linear-gradient(45deg, #7a3fff, #d95aff);
   border: none;
-  border-radius: 50px;
+  border-radius: 60px;
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(75, 0, 130, 0.6);
+  box-shadow: 0 10px 30px rgba(122, 63, 255, 0.6);
   text-transform: uppercase;
   letter-spacing: 3px;
-  transition: background 0.3s ease;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
 .validate-btn:hover {
-  background: #ff6600; /* orange */
-  box-shadow: 0 8px 25px rgba(255, 102, 0, 0.6);
+  background: linear-gradient(45deg, #d95aff, #7a3fff);
+  box-shadow: 0 14px 40px rgba(217, 90, 255, 0.8);
 }
