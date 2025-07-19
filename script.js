@@ -1,88 +1,88 @@
-// script.js
+const utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || {};
 
-// Vérification utilisateur (admin code)
-const ADMIN_CODE = "admin123"; // change ce code pour plus de sécurité
-
-function login(event) {
-  event.preventDefault();
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  const storedPassword = localStorage.getItem(`user_${username}`);
-  if (storedPassword && storedPassword === password) {
-    sessionStorage.setItem("user", username);
-    window.location.href = "delivery.html";
-  } else {
-    alert("Identifiants incorrects.");
-  }
+// Connexion
+if (document.getElementById("loginForm")) {
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const u = username.value;
+    const p = password.value;
+    if (utilisateurs[u] && utilisateurs[u] === p) {
+      sessionStorage.setItem("utilisateur", u);
+      window.location.href = "delivery.html";
+    } else {
+      alert("Identifiants incorrects");
+    }
+  });
 }
 
-function register(event) {
-  event.preventDefault();
-  const code = document.getElementById("adminCode").value;
-  const username = document.getElementById("newUsername").value;
-  const password = document.getElementById("newPassword").value;
-
-  if (code !== ADMIN_CODE) {
-    alert("Code administrateur incorrect.");
-    return;
-  }
-
-  if (localStorage.getItem(`user_${username}`)) {
-    alert("Nom d'utilisateur déjà pris.");
-  } else {
-    localStorage.setItem(`user_${username}`, password);
-    alert("Compte créé !");
+// Enregistrement
+if (document.getElementById("registerForm")) {
+  document.getElementById("registerForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    utilisateurs[newUsername.value] = newPassword.value;
+    localStorage.setItem("utilisateurs", JSON.stringify(utilisateurs));
+    alert("Utilisateur créé !");
     window.location.href = "login.html";
-  }
+  });
 }
 
-function saveDelivery(event) {
-  event.preventDefault();
-  const nom = document.getElementById("nom").value;
-  const adresse = document.getElementById("adresse").value;
-  const infos = document.getElementById("infos").value;
-
-  const livraison = { nom, adresse, infos };
-  sessionStorage.setItem("livraison", JSON.stringify(livraison));
-  window.location.href = "catalog.html";
+// Livraison
+if (document.getElementById("deliveryForm")) {
+  document.getElementById("deliveryForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    sessionStorage.setItem("contact", contactName.value);
+    sessionStorage.setItem("phone", phoneNumber.value);
+    sessionStorage.setItem("date", deliveryDate.value);
+    window.location.href = "catalog.html";
+  });
 }
 
-let panier = JSON.parse(sessionStorage.getItem("panier") || "[]");
+// Catalogue
+const produits = [
+  { nom: "Pommes", prix: 1.2, image: "https://via.placeholder.com/100" },
+  { nom: "Bananes", prix: 1.0, image: "https://via.placeholder.com/100" },
+  { nom: "Poires", prix: 1.5, image: "https://via.placeholder.com/100" },
+];
 
-function addToCart(nom, prix) {
-  panier.push({ nom, prix });
-  sessionStorage.setItem("panier", JSON.stringify(panier));
-  alert(`${nom} ajouté au panier.`);
+if (document.getElementById("catalog")) {
+  const container = document.getElementById("catalog");
+  produits.forEach((p, i) => {
+    container.innerHTML += 
+      <div>
+        <img src="${p.image}" alt="${p.nom}" />
+        <p>${p.nom} - ${p.prix.toFixed(2)} €</p>
+        <input type="number" id="qte${i}" min="0" value="0" />
+      </div>
+      <hr />
+    ;
+  });
 }
 
-function afficherRecap() {
-  const panier = JSON.parse(sessionStorage.getItem("panier") || "[]");
-  const livraison = JSON.parse(sessionStorage.getItem("livraison") || "{}");
-  const recap = document.getElementById("recap");
-  const totaux = document.getElementById("totaux");
-
-  if (!recap || !totaux) return;
-
-  recap.innerHTML = `
-    <h2>Livraison</h2>
-    <p><strong>Nom:</strong> ${livraison.nom}</p>
-    <p><strong>Adresse:</strong> ${livraison.adresse}</p>
-    <p><strong>Infos:</strong> ${livraison.infos}</p>
-    <h2>Produits</h2>
-    <ul>
-      ${panier.map(p => `<li>${p.nom} - ${p.prix}€</li>`).join("")}
-    </ul>
-  `;
-
-  const total = panier.reduce((s, p) => s + p.prix, 0);
-  totaux.innerHTML = `<h3>Total : ${total}€</h3>`;
+function validerCommande() {
+  const commande = produits.map((p, i) => {
+    return {
+      nom: p.nom,
+      prix: p.prix,
+      quantite: parseInt(document.getElementById(qte${i}).value)
+    };
+  });
+  sessionStorage.setItem("commande", JSON.stringify(commande));
+  window.location.href = "summary.html";
 }
 
-function envoyerCommande() {
-  alert("Commande envoyée !");
-  sessionStorage.clear();
-  window.location.href = "login.html";
+// Résumé
+if (document.getElementById("recap")) {
+  const commande = JSON.parse(sessionStorage.getItem("commande"));
+  let total = 0;
+  recap.innerHTML = <p><strong>Contact :</strong> ${sessionStorage.getItem("contact")}</p>
+    <p><strong>Téléphone :</strong> ${sessionStorage.getItem("phone")}</p>
+    <p><strong>Date :</strong> ${sessionStorage.getItem("date")}</p><hr />;
+  commande.forEach(item => {
+    if (item.quantite > 0) {
+      const prixLigne = item.prix * item.quantite;
+      total += prixLigne;
+      recap.innerHTML += <p>${item.nom} x ${item.quantite} = ${prixLigne.toFixed(2)} €</p>;
+    }
+  });
+  recap.innerHTML += <hr /><h3>Total : ${total.toFixed(2)} €</h3>;
 }
-
-window.onload = afficherRecap;
