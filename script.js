@@ -31,24 +31,25 @@ function saveDelivery(event) {
   event.preventDefault();
 
   const nom = document.getElementById("nom").value.trim();
-  const adresse = document.getElementById("adresse").value.trim();
-  const infos = document.getElementById("infos").value.trim();
+  const telephone = document.getElementById("telephone").value.trim();
+  const dateHeure = document.getElementById("dateHeure").value;
+  const commentaire = document.getElementById("commentaire").value.trim();
 
-  if (!nom || !adresse) {
-    alert("Veuillez remplir les champs obligatoires.");
+  if (!nom || !telephone || !dateHeure) {
+    alert("Veuillez remplir tous les champs obligatoires.");
     return;
   }
 
   sessionStorage.setItem("livraison_nom", nom);
-  sessionStorage.setItem("livraison_adresse", adresse);
-  sessionStorage.setItem("livraison_infos", infos);
+  sessionStorage.setItem("livraison_telephone", telephone);
+  sessionStorage.setItem("livraison_dateHeure", dateHeure);
+  sessionStorage.setItem("livraison_commentaire", commentaire);
 
-  // Redirection vers le catalogue
   window.location.href = "catalog.html";
 }
 
 // ====================
-// AJOUT AU PANIER
+// PANIER
 // ====================
 let panier = JSON.parse(sessionStorage.getItem("panier")) || [];
 
@@ -66,14 +67,29 @@ function afficherRecapitulatif() {
   const totaux = document.getElementById("totaux");
   const panier = JSON.parse(sessionStorage.getItem("panier")) || [];
 
+  const nom = sessionStorage.getItem("livraison_nom") || "Non renseigné";
+  const telephone = sessionStorage.getItem("livraison_telephone") || "Non renseigné";
+  const dateHeure = sessionStorage.getItem("livraison_dateHeure") || "Non renseignée";
+  const commentaire = sessionStorage.getItem("livraison_commentaire") || "Aucun";
+
+  recap.innerHTML = `
+    <h2>Livraison :</h2>
+    <p><strong>Nom & Prénom :</strong> ${nom}</p>
+    <p><strong>Téléphone :</strong> ${telephone}</p>
+    <p><strong>Date & Heure :</strong> ${dateHeure}</p>
+    <p><strong>Commentaire :</strong> ${commentaire}</p>
+    <hr>
+    <h2>Panier :</h2>
+  `;
+
   if (panier.length === 0) {
-    recap.innerHTML = "<p>Votre panier est vide.</p>";
+    recap.innerHTML += "<p>Votre panier est vide.</p>";
     totaux.innerHTML = "";
     return;
   }
 
   let total = 0;
-  recap.innerHTML = panier.map(item => {
+  recap.innerHTML += panier.map(item => {
     total += item.prix;
     return `<p>${item.nom} - ${item.prix}€</p>`;
   }).join("");
@@ -82,20 +98,27 @@ function afficherRecapitulatif() {
 }
 
 // ====================
-// ENVOYER COMMANDE
+// VALIDER COMMANDE
 // ====================
 function envoyerCommande() {
   const nom = sessionStorage.getItem("livraison_nom") || "Inconnu";
-  const adresse = sessionStorage.getItem("livraison_adresse") || "Non précisée";
-  const infos = sessionStorage.getItem("livraison_infos") || "Aucune";
-
+  const telephone = sessionStorage.getItem("livraison_telephone") || "-";
+  const dateHeure = sessionStorage.getItem("livraison_dateHeure") || "-";
+  const commentaire = sessionStorage.getItem("livraison_commentaire") || "-";
   const panier = JSON.parse(sessionStorage.getItem("panier")) || [];
 
-  const recap = `Commande de ${nom}\nAdresse : ${adresse}\nInfos : ${infos}\n\nArticles :\n${panier.map(p => `- ${p.nom} : ${p.prix}€`).join('\n')}`;
+  const recap = `
+Commande pour : ${nom}
+Téléphone : ${telephone}
+Date & Heure : ${dateHeure}
+Commentaire : ${commentaire}
 
-  alert("Commande envoyée ! Voici le résumé :\n\n" + recap);
+Articles :
+${panier.map(p => `- ${p.nom} : ${p.prix}€`).join('\n')}
+`;
 
-  // Nettoyage
+  alert("Commande envoyée !\n\n" + recap);
+
   sessionStorage.clear();
   window.location.href = "login.html";
 }
