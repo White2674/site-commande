@@ -1,5 +1,5 @@
 // ====================
-// CONFIGURATION UTILISATEURS
+// UTILISATEURS PRÉDÉFINIS
 // ====================
 const USERS = {
   "kevin": "kevin2025",
@@ -25,7 +25,7 @@ function login(event) {
 }
 
 // ====================
-// LIVRAISON
+// SAUVEGARDE INFOS LIVRAISON
 // ====================
 function saveDelivery(event) {
   event.preventDefault();
@@ -43,22 +43,23 @@ function saveDelivery(event) {
   sessionStorage.setItem("livraison_adresse", adresse);
   sessionStorage.setItem("livraison_infos", infos);
 
+  // Redirection vers le catalogue
   window.location.href = "catalog.html";
 }
 
 // ====================
-// CATALOGUE
+// AJOUT AU PANIER
 // ====================
-let panier = [];
+let panier = JSON.parse(sessionStorage.getItem("panier")) || [];
 
 function addToCart(nom, prix) {
   panier.push({ nom, prix });
-  alert(`Ajouté : ${nom} - ${prix}€`);
   sessionStorage.setItem("panier", JSON.stringify(panier));
+  alert(`Ajouté au panier : ${nom} (${prix}€)`);
 }
 
 // ====================
-// RÉCAPITULATIF
+// AFFICHAGE RÉCAPITULATIF
 // ====================
 function afficherRecapitulatif() {
   const recap = document.getElementById("recap");
@@ -66,7 +67,8 @@ function afficherRecapitulatif() {
   const panier = JSON.parse(sessionStorage.getItem("panier")) || [];
 
   if (panier.length === 0) {
-    recap.innerHTML = "<p>Aucun produit sélectionné.</p>";
+    recap.innerHTML = "<p>Votre panier est vide.</p>";
+    totaux.innerHTML = "";
     return;
   }
 
@@ -80,7 +82,7 @@ function afficherRecapitulatif() {
 }
 
 // ====================
-// ENVOI COMMANDE
+// ENVOYER COMMANDE
 // ====================
 function envoyerCommande() {
   const nom = sessionStorage.getItem("livraison_nom") || "Inconnu";
@@ -93,7 +95,7 @@ function envoyerCommande() {
 
   alert("Commande envoyée ! Voici le résumé :\n\n" + recap);
 
-  // Réinitialisation
+  // Nettoyage
   sessionStorage.clear();
   window.location.href = "login.html";
 }
