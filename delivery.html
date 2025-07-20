@@ -2,17 +2,18 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Informations de Livraison</title>
+  <title>Livraison</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <div class="card">
-      <h1 class="title">Livraison</h1>
+      <h1 class="title">Informations de Livraison</h1>
       <form class="form" onsubmit="saveDelivery(event)">
-        <input type="text" id="nom" placeholder="Nom complet" required>
-        <input type="text" id="adresse" placeholder="Adresse complète" required>
-        <textarea id="infos" placeholder="Infos supplémentaires (optionnel)" rows="3"></textarea>
+        <input type="text" id="nom" placeholder="Nom & Prénom du contact" required>
+        <input type="tel" id="telephone" placeholder="Numéro de téléphone" required>
+        <input type="datetime-local" id="dateHeure" required>
+        <textarea id="commentaire" placeholder="Commentaire (optionnel)" rows="3"></textarea>
         <button type="submit" class="btn">Continuer</button>
       </form>
     </div>
